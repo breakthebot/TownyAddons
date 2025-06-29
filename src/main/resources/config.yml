@@ -1,0 +1,8 @@
+### /n shout
+maxShoutChars: 128
+ShoutCooldownHours: 6
+ShoutPrice: 128
+### /res set wiki
+wikiURL: "https://wiki.earthmc.net/"
+### DiscordSRV Towny updates
+discordSRVChannelID: 969978366394511420

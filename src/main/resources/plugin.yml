@@ -1,0 +1,44 @@
+name: TownyAddons
+version: '1.0'
+main: org.breakthebot.townyAddons.TownyAddons
+api-version: '1.21'
+authors: [Veyronity]
+
+permissions:
+  ### /n shout
+  towny.command.nation.shout:
+    description: Allows using /n shout
+    default: op
+  ### /res set wiki
+  towny.command.resident.set.wiki:
+    description: Allow residents to set & remove their /res wiki
+    default: true
+  ### /t set discord
+  towny.command.town.set.discord:
+    description: Allow players to set & remove their /town discord
+    default: op
+  ### /n set discord
+  towny.command.nation.set.discord:
+    description: Allow players to set & remove their /nation discord
+    default: op
+  ### /t set plotlimit
+  towny.command.town.set.plotlimit:
+    description: Allow players to set & remove their town's limit for how many plots a resident can claim
+    default: op
+  ### /t toggle friendlyfire
+  towny.command.town.toggle.friendlyfire:
+    description: Allow players to toggle their town's friendlyfire-allowed status
+    default: op
+  ### Bypass friendlyfire restrictiton
+  towny.town.friendlyfirelimitation.bypass:
+    description: Allow players to bypass friendlyfire-allowed restriction, and to be able to toggle a plot's PvP status
+    default: op
+  ### /t log
+  towny.town.log.view:
+    description: Allow players to view recent joins & leaves in their own town
+    default: op
+
+
+dependencies:
+  - name: Towny
+    required: true
