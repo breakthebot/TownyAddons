@@ -8,6 +8,7 @@ import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.*;
 import com.palmergames.bukkit.towny.utils.PermissionGUIUtil;
 import org.breakthebot.townyAddons.TownyAddons;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -55,9 +56,11 @@ public class Vault implements Listener {
     @EventHandler
     public void onResidentTrusted(TownTrustAddEvent event) {
         Resident newResident = event.getTrustedResident();
+        Player player = newResident.getPlayer();
+
+        if (player.hasPermission("towny.command.townyadmin.town.trust")) { return; }
+
         Town town = event.getTown();
-
-
 
         PermissionData denyAll = new PermissionData(negatedPermissions, "VaultSecurity");
 
