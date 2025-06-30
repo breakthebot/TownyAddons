@@ -20,7 +20,7 @@ public class OverclaimNotify implements Listener {
     private static final TownyAPI API = TownyAPI.getInstance();
 
     @EventHandler
-    public void TownClaimEvent(TownUnclaimEvent event) {
+    public void TownUnClaimEvent(TownUnclaimEvent event) {
         if (!event.isOverClaim()) {
             return;
         }
