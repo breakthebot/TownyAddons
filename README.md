@@ -51,7 +51,7 @@ Ideas sourced from the EMC Roadmap
   Display if the town is paying for outsiders to teleport
 - Discord  
   View a town's linked discord
-- Overclaims remaining [yhb7jsqi](https://github.com/orgs/EarthMC/projects/11/views/2?filterQuery=left&pane=issue&itemId=84758219)  
+- Overclaims remaining [yhb7jsqi](yhb7jsqi)  
   Display how many plots the town is allowed to overclaim
 
 ## Nation
@@ -73,6 +73,11 @@ Ideas sourced from the EMC Roadmap
   Display how many residents the nation has
 - Nation bonus [8a3b3174](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=84758983)  
   Display a nation's nation bonus
+
+## Plot
+**Vault plot type** [oxv9whay](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=70038439)  
+Upon a plot being set to Vault using `/plot set vault`, all members trusted in the town will get all 4 deny-permission overrides in the plot  
+Upon someone new being trusted in the town, all plots set to vault will also add deny-permission for the newly trusted player
 
 ## DiscordSRV
 Towny integration into DiscordSRV
