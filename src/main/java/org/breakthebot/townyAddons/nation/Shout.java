@@ -1,3 +1,20 @@
+/*
+ * This file is part of TownyAddons.
+ *
+ * TownyAddons is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * TownyAddons is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with TownyAddons. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breakthebot.townyAddons.nation;
 
 import org.breakthebot.townyAddons.TownyAddons;
@@ -26,6 +43,11 @@ public class Shout implements CommandExecutor {
             return false;
         }
 
+        if (!player.hasPermission("towny.command.nation.shout")){
+            TownyMessaging.sendErrorMsg(sender, "You do not have permission to perform this command.");
+            return false;
+        }
+
         config settings = TownyAddons.getInstance().getConfiguration();
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
@@ -44,10 +66,6 @@ public class Shout implements CommandExecutor {
             return false;
         }
 
-        if (!player.hasPermission("towny.command.nation.shout")){
-            TownyMessaging.sendErrorMsg(sender, "You do not have permission to perform this command.");
-            return false;
-        }
 
         int maxChars = settings.maxShoutChars;
         if (args[0].length() > maxChars){
