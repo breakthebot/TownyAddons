@@ -33,8 +33,11 @@ Ideas sourced from the EMC Roadmap
   Set a discord for your town  
   Visible on `/t` lookup
 - `/t resetperms` [cln1u95x](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=78808672)  
-  Completely reset a town's permission overrides.  
-  Remove all members of `/t trust list`, remove all players in each `/plot trust` as well as `/plot perm gui` permission overrides.
+  Completely reset a town's permissions.  
+  Clear town trusted, evict all plots, remove all plot trusted & permission overrides.  
+  *Optionally* specify a resident to only affect that player.  
+  Must add "confirm" to the end regardless  
+  **Usage: /t resetperms {resident} confirm**
 - `/t log`  [6yy4qe9h](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=60482575)
   & [mj5kyw77](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=84759143)  
   List recent resident join & leave activity
