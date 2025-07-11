@@ -42,6 +42,7 @@ public class TownDiscord implements CommandExecutor {
 
         if (!player.hasPermission("towny.command.town.set.discord")) {
             TownyMessaging.sendMsg(player, "You do not have permission to perform this command.");
+            return false;
         }
 
         TownyAPI API = TownyAPI.getInstance();

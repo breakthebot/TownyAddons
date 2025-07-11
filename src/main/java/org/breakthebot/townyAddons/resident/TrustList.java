@@ -47,13 +47,15 @@ public class TrustList implements CommandExecutor {
                 TrustedIn.add(town);
             }
         }
+        if (TrustedIn.isEmpty()) {
+            TownyMessaging.sendErrorMsg(player, "You are not trusted in any towns.");
+            return false;
+        }
         String list = TrustedIn.stream()
                 .map(Town::getName)
                 .reduce((a, b) -> a + ", " + b)
                 .orElse("");
         TownyMessaging.sendMsg(player, "You are trusted in the following towns: \n" + list);
-
-
         return true;
     }
 }

@@ -52,24 +52,22 @@ public class FriendlyFire implements CommandExecutor {
 
         Town town = res.getTownOrNull();
         assert town != null;
-
-        if (args.length == 0) {
-            boolean current = FriendlyFireON(town);
-            setFriendlyFire(town, !current);
-            TownyMessaging.sendErrorMsg(player, "Successfully toggled Friendly Fire to " + !current);
-        }
-
         boolean bool;
-        if (args[0].equalsIgnoreCase("on")) {
-            bool = true;
-        } else if (args[0].equalsIgnoreCase("off")) {
-            bool = false;
+        if (args.length == 0) {
+            bool = !FriendlyFireON(town);
+            setFriendlyFire(town, bool);
+            TownyMessaging.sendErrorMsg(player, "Successfully toggled Friendly Fire to " + bool);
         } else {
-            TownyMessaging.sendErrorMsg(player, "Usage: /t toggle friendlyfire on|off");
-            return false;
+            if (args[0].equalsIgnoreCase("on")) {
+                bool = true;
+            } else if (args[0].equalsIgnoreCase("off")) {
+                bool = false;
+            } else {
+                TownyMessaging.sendErrorMsg(player, "Usage: /t toggle friendlyfire on|off");
+                return false;
+            }
+            setFriendlyFire(town, bool);
         }
-
-        setFriendlyFire(town, bool);
         TownyMessaging.sendMsg(player, "Successfully toggled Friendly Fire to " + bool);
         return true;
     }

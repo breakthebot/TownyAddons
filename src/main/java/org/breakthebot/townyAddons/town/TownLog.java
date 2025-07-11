@@ -23,7 +23,6 @@ import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
 import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Town;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -81,7 +80,7 @@ public class TownLog implements CommandExecutor, Listener {
             message += "\n&b- &r" + target.getName() + " " + actionText + "&r the town &7(" + timeAgo + "&7)";
         }
 
-        TownyMessaging.sendMsg(player, ChatColor.translateAlternateColorCodes('&', message));
+        TownyMessaging.sendMsg(player, message);
 
         return true;
     }

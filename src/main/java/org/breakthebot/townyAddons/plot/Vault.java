@@ -73,8 +73,10 @@ public class Vault implements Listener {
     @EventHandler
     public void onResidentTrusted(TownTrustAddEvent event) {
         Resident newResident = event.getTrustedResident();
+        if (!(newResident instanceof Player)) { return; }
         Player player = newResident.getPlayer();
 
+        assert player != null;
         if (player.hasPermission("towny.command.townyadmin.town.trust")) { return; }
 
         Town town = event.getTown();

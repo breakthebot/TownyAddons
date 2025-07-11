@@ -43,7 +43,7 @@ public class OnlineFriends implements CommandExecutor {
         List<Resident> friends = res.getFriends();
         ArrayList<Resident> onlineFriends = new ArrayList<>();
         if (friends.isEmpty()) {
-            TownyMessaging.sendErrorMsg(player, "You have no friends");
+            TownyMessaging.sendErrorMsg(player, "You have no friends.");
             return false;
         }
         for (Resident friend : friends) {
@@ -51,13 +51,16 @@ public class OnlineFriends implements CommandExecutor {
                 onlineFriends.add(friend);
             }
         }
+        if (onlineFriends.isEmpty()) {
+            TownyMessaging.sendErrorMsg(player, "You have no online friends.");
+            return false;
+        }
         String list = onlineFriends.stream()
                 .map(Resident::getName)
                 .reduce((a, b) -> a + ", " + b)
                 .orElse("");
-        TownyMessaging.sendMsg(player, "These are your online friends: \n" + list);
 
-
-        return false;
+        TownyMessaging.sendMsg(player, "Online friends: \n" + list);
+        return true;
     }
 }

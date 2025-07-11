@@ -50,7 +50,7 @@ public class TownStatusScreenListener implements Listener {
                     .append(Component.text("[", NamedTextColor.GRAY))
                     .append(Component.text("Outsider Spawn", NamedTextColor.GREEN)
                             .append(Component.text("]", NamedTextColor.GRAY))
-                            .hoverEvent(Component.text("town has purchased outsidercanspawn\nAllowing outsiders to teleport.", NamedTextColor.DARK_GREEN)));
+                            .hoverEvent(Component.text("Town has purchased outsidercanspawn\nAllowing outsiders to teleport.", NamedTextColor.DARK_GREEN)));
 
 
             event.getStatusScreen().addComponentOf("OutsidersCanSpawn", component);

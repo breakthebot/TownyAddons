@@ -23,7 +23,7 @@ import com.palmergames.bukkit.towny.TownyUniverse;
 import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.metadata.StringDataField;
-import org.bukkit.ChatColor;
+import com.palmergames.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -47,7 +47,7 @@ public class OutlawedNations implements CommandExecutor {
         assert res != null;
         List<Nation> outlawingNations = getNationsThatOutlawPlayer(player);
         if (outlawingNations.isEmpty()) {
-            player.sendMessage(ChatColor.DARK_GREEN + "Outlawed in " + ChatColor.GREEN + "[" + 0 + "]:");
+            player.sendMessage(NamedTextColor.DARK_GREEN + "Outlawed in " + NamedTextColor.GREEN + "[" + 0 + "]:");
             return false;
         }
 
@@ -56,7 +56,7 @@ public class OutlawedNations implements CommandExecutor {
                 .reduce((a, b) -> a + ", " + b)
                 .orElse("");
         int count = outlawingNations.size();
-        player.sendMessage(ChatColor.DARK_GREEN + "Outlawed in " + ChatColor.GREEN + "[" + count + "]:" + ChatColor.WHITE + " " + list);
+        player.sendMessage(NamedTextColor.DARK_GREEN + "Outlawed in " + NamedTextColor.GREEN + "[" + count + "]:" + NamedTextColor.WHITE + " " + list);
 
 
         return false;
