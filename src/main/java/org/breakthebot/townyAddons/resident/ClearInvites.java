@@ -31,7 +31,7 @@ public class ClearInvites implements Listener {
     public void onTownJoin(TownAddResidentEvent event) {
         Resident res = event.getResident();
         List<Invite> inviteList = res.getReceivedInvites();
-
+        if (inviteList.isEmpty()) { return; }
         for (Invite inv : inviteList) {
             res.deleteReceivedInvite(inv);
         }
