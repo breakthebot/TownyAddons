@@ -67,9 +67,11 @@ public class Shout implements CommandExecutor {
         }
 
 
+        String message = String.join(" ", args);
+
         int maxChars = settings.maxShoutChars;
-        if (args[0].length() > maxChars){
-            TownyMessaging.sendErrorMsg(sender, "Too many Characters! Maximum: " + maxChars);
+        if (message.length() > maxChars) {
+            TownyMessaging.sendErrorMsg(sender, "Too many characters! Maximum: " + maxChars);
             return false;
         }
 
@@ -106,7 +108,7 @@ public class Shout implements CommandExecutor {
 
         nat.getAccount().withdraw(owed, "Shouting at request of " + sender.getName());
         setLastUsedNation(nat, System.currentTimeMillis());
-        TownyMessaging.sendGlobalMessage("&6The nation of &l" + nat + "&r&6 shouts: &r&f&o" + String.join(" ", args));
+        TownyMessaging.sendGlobalMessage("&6The nation of &l" + nat + "&r&6 shouts: &r&f&o" + message);
         return true;
     }
 

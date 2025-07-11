@@ -32,6 +32,6 @@ public class AnnounceNationRename implements Listener {
         Nation nation = event.getNation();
         String oldName = event.getOldName();
 
-        TownyMessaging.sendGlobalMessage(oldName + " was renamed to " + nation.getName());
+        TownyMessaging.sendGlobalMessage("The nation of " + oldName + " was renamed to " + nation.getName());
     }
 }
