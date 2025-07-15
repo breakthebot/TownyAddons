@@ -44,7 +44,7 @@ public class NationStatusScreenListener implements Listener {
                         .append(Component.text("Residents: ", NamedTextColor.DARK_GREEN))
                         .append(Component.text(String.valueOf(residents), NamedTextColor.GREEN))
                         .append(Component.newline())
-                        .append(Component.text("NB: ", NamedTextColor.DARK_GREEN))
+                        .append(Component.text("Bonus: ", NamedTextColor.DARK_GREEN))
                         .append(Component.text(String.valueOf(nationBonus), NamedTextColor.GREEN))
                 ))
                 .append(Component.text("]", NamedTextColor.GRAY));
