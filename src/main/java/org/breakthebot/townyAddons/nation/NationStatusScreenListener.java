@@ -38,14 +38,17 @@ public class NationStatusScreenListener implements Listener {
 
 
         Component stats = Component.empty()
-                .append(Component.text("Nation Stats", NamedTextColor.GREEN))
+                .append(Component.text("[", NamedTextColor.GRAY))
+                .append(Component.text("Stats", NamedTextColor.GREEN))
                 .hoverEvent(HoverEvent.showText(Component.empty()
                         .append(Component.text("Residents: ", NamedTextColor.DARK_GREEN))
                         .append(Component.text(String.valueOf(residents), NamedTextColor.GREEN))
                         .append(Component.newline())
                         .append(Component.text("NB: ", NamedTextColor.DARK_GREEN))
                         .append(Component.text(String.valueOf(nationBonus), NamedTextColor.GREEN))
-                ));
+                ))
+                .append(Component.text("]", NamedTextColor.GRAY));
+
         event.getStatusScreen().addComponentOf("Stats", stats);
 
         if (NationDiscord.nationHasDiscord(nation)) {
