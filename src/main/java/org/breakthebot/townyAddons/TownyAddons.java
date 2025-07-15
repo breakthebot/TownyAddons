@@ -87,9 +87,9 @@ public final class TownyAddons extends JavaPlugin {
         command(new AddonCommand(resType, "outlawednations", new OutlawedNations()));
         command(new AddonCommand(townType, "resetperms", new ResetPerms()));
         command(new AddonCommand(nationType, "shout", new Shout()));
-        command(new AddonCommand(resType, "wiki", new Wiki()));
-        command(new AddonCommand(townType, "discord", new TownDiscord()));
-        command(new AddonCommand(nationType, "discord", new NationDiscord()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.RESIDENT_SET, "wiki", new Wiki()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_SET, "discord", new TownDiscord()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.NATION_SET, "discord", new NationDiscord()));
 //        command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_SET, "plotlimit", new PlotLimit()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_TOGGLE, "friendlyfire", new FriendlyFire()));
         command(new AddonCommand(townType, "log", new TownLog()));
