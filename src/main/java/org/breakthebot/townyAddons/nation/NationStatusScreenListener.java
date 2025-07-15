@@ -20,6 +20,7 @@ package org.breakthebot.townyAddons.nation;
 
 import com.palmergames.adventure.text.Component;
 import com.palmergames.adventure.text.event.ClickEvent;
+import com.palmergames.adventure.text.event.HoverEvent;
 import com.palmergames.adventure.text.format.NamedTextColor;
 import com.palmergames.bukkit.towny.event.statusscreen.NationStatusScreenEvent;
 import com.palmergames.bukkit.towny.object.Nation;
@@ -35,22 +36,17 @@ public class NationStatusScreenListener implements Listener {
         int nationBonus = getNationBonus(nation);
         int residents = nation.getNumResidents();
 
-        Component nationBonusComponent = Component.empty()
-                .append(Component.text("[", NamedTextColor.GRAY))
-                .append(Component.text("Nation Bonus", NamedTextColor.GREEN))
-                .append(Component.text("]", NamedTextColor.GRAY))
-                .hoverEvent(Component.text("This nation has a nation bonus of " + nationBonus, NamedTextColor.DARK_GREEN));
 
-        event.getStatusScreen().addComponentOf("nationbonus", nationBonusComponent);
-
-        Component resCountComponent = Component.empty()
-                .append(Component.text("[", NamedTextColor.GRAY))
-                .append(Component.text("Nation Bonus", NamedTextColor.GREEN))
-                .append(Component.text("]", NamedTextColor.GRAY))
-                .hoverEvent(Component.text("This nation has  " + residents + " residents", NamedTextColor.DARK_GREEN));
-
-        event.getStatusScreen().addComponentOf("nationResidents", resCountComponent);
-
+        Component stats = Component.empty()
+                .append(Component.text("Nation Stats", NamedTextColor.GREEN))
+                .hoverEvent(HoverEvent.showText(Component.empty()
+                        .append(Component.text("Residents: ", NamedTextColor.DARK_GREEN))
+                        .append(Component.text(String.valueOf(residents), NamedTextColor.GREEN))
+                        .append(Component.newline())
+                        .append(Component.text("NB: ", NamedTextColor.DARK_GREEN))
+                        .append(Component.text(String.valueOf(nationBonus), NamedTextColor.GREEN))
+                ));
+        event.getStatusScreen().addComponentOf("Stats", stats);
 
         if (NationDiscord.nationHasDiscord(nation)) {
             String discordURL = NationDiscord.getNationDiscord(nation);

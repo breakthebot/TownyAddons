@@ -59,7 +59,7 @@ public class OutlawedNations implements CommandExecutor {
         player.sendMessage(NamedTextColor.DARK_GREEN + "Outlawed in " + NamedTextColor.GREEN + "[" + count + "]:" + NamedTextColor.WHITE + " " + list);
 
 
-        return false;
+        return true;
     }
 
     public List<Nation> getNationsThatOutlawPlayer(Player player) {
