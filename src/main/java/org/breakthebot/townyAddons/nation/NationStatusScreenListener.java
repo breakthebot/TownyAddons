@@ -35,6 +35,7 @@ public class NationStatusScreenListener implements Listener {
         Nation nation = event.getNation();
         int nationBonus = getNationBonus(nation);
         int residents = nation.getNumResidents();
+        int size = nation.getNumTownblocks();
 
 
         Component stats = Component.empty()
@@ -46,6 +47,9 @@ public class NationStatusScreenListener implements Listener {
                         .append(Component.newline())
                         .append(Component.text("Bonus: ", NamedTextColor.DARK_GREEN))
                         .append(Component.text(String.valueOf(nationBonus), NamedTextColor.GREEN))
+                        .append(Component.newline())
+                        .append(Component.text("Size: ", NamedTextColor.DARK_GREEN))
+                        .append(Component.text(String.valueOf(size), NamedTextColor.GREEN))
                 ))
                 .append(Component.text("]", NamedTextColor.GRAY));
 
