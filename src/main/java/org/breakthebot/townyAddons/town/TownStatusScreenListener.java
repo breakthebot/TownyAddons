@@ -35,7 +35,7 @@ public class TownStatusScreenListener implements Listener {
         Town town = event.getTown();
         String OutsidersCanSpawn_KEY = "bspawn_canoutsidersspawn";
         if (town.hasMeta(OutsidersCanSpawn_KEY)) {
-                CustomDataField<?> field = town.getMetadata(OutsidersCanSpawn_KEY);
+            CustomDataField<?> field = town.getMetadata(OutsidersCanSpawn_KEY);
             boolean OutsidersCanSpawn;
             if (field instanceof BooleanDataField s) {
                 OutsidersCanSpawn = s.getValue();
