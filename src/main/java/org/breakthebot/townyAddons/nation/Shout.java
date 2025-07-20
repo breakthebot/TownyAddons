@@ -44,7 +44,7 @@ public class Shout implements CommandExecutor {
         }
 
         if (!player.hasPermission("towny.command.nation.shout")){
-            TownyMessaging.sendErrorMsg(sender, "You do not have permission to perform this command.");
+            TownyMessaging.sendErrorMsg(player, "You do not have permission to perform this command.");
             return false;
         }
 
@@ -57,12 +57,12 @@ public class Shout implements CommandExecutor {
 
 
         if (!res.hasNation()){
-            TownyMessaging.sendErrorMsg(sender, "You must be in a nation.");
+            TownyMessaging.sendErrorMsg(player, "You must be in a nation.");
             return false;
         }
 
         if (args.length < 1){
-            TownyMessaging.sendErrorMsg(sender, "Usage: /n shout {message}");
+            TownyMessaging.sendErrorMsg(player, "Usage: /n shout {message}");
             return false;
         }
 
@@ -71,7 +71,7 @@ public class Shout implements CommandExecutor {
 
         int maxChars = settings.maxShoutChars;
         if (message.length() > maxChars) {
-            TownyMessaging.sendErrorMsg(sender, "Too many characters! Maximum: " + maxChars);
+            TownyMessaging.sendErrorMsg(player, "Too many characters! Maximum: " + maxChars);
             return false;
         }
 
@@ -94,7 +94,7 @@ public class Shout implements CommandExecutor {
             if (hours > 0) durationMsg += hours + " hours ";
             if (minutes > 0) durationMsg += minutes + " minutes";
 
-            TownyMessaging.sendErrorMsg(sender, "Your nation must wait " + durationMsg.trim() + " before using this command again.");
+            TownyMessaging.sendErrorMsg(player, "Your nation must wait " + durationMsg.trim() + " before using this command again.");
             return false;
         }
 
@@ -102,11 +102,11 @@ public class Shout implements CommandExecutor {
         double bal = nat.getAccount().getHoldingBalance();
         double owed = settings.ShoutPrice;
         if (bal < owed){
-            TownyMessaging.sendErrorMsg(sender, "Your nation does not have enough gold for this action.");
+            TownyMessaging.sendErrorMsg(player, "Your nation does not have enough gold for this action.");
             return false;
         }
 
-        nat.getAccount().withdraw(owed, "Shouting at request of " + sender.getName());
+        nat.getAccount().withdraw(owed, "Shouting at request of " + player.getName());
         setLastUsedNation(nat, System.currentTimeMillis());
         TownyMessaging.sendGlobalMessage("&6The nation of &l" + nat + "&r&6 shouts: &r&f&o" + message);
         return true;
