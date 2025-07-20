@@ -40,6 +40,7 @@ public class Wiki implements CommandExecutor {
 
         if (!player.hasPermission("towny.command.resident.set.wiki")) {
             TownyMessaging.sendMsg(player, "You do not have permission to perform this command.");
+            return false;
         }
 
         TownyAPI API = TownyAPI.getInstance();
