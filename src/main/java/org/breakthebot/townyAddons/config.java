@@ -37,7 +37,7 @@ public class config {
         FileConfiguration config = plugin.getConfig();
 
         this.maxShoutChars = config.getInt("maxShoutChars", 128);
-        this.ShoutCooldownHours = config.getInt("ShoutCooldownHours", 21600);
+        this.ShoutCooldownHours = config.getInt("ShoutCooldownHours", 6);
         this.ShoutPrice = config.getInt("ShoutPrice", 128);
         this.wikiURL = config.getString("wikiURL", "https://wiki.earthmc.net/");
         this.discordSRVChannelID = config.getString("discordSRVChannelID", "969978366394511420");
