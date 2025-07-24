@@ -43,7 +43,10 @@ Ideas sourced from the EMC Roadmap
   List recent resident join & leave activity
 - `/t toggle friendlyfire (on|off)`  [zwipd7cj](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=78804596)  
   Toggle a town's friendlyfire allowed status.  
-  This stops `/plot toggle pvp` in all chunks in the town. Only players with the bypass permission node will bypass.
+  This stops `/plot toggle pvp` (issued by a resident of the town) in all chunks in the town. Only players with the bypass permission node will bypass.  
+- `/ta toggle shield <town> (on|off)`
+  Allow server mods/admins to toggle a town's overclaimshield  
+  Requires [overclaimshield](https://github.com/jwkerr/OverclaimShield/tree/master/src/main/java/net/earthmc/overclaimshield)
 
 **Features**
 - Overclaim Notify  [nvpov4w5](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=82337873)  
@@ -54,7 +57,7 @@ Ideas sourced from the EMC Roadmap
   Display if the town is paying for outsiders to teleport
 - Discord  
   View a town's linked discord
-- Overclaims remaining [yhb7jsqi](yhb7jsqi)  
+- Overclaims remaining [yhb7jsqi](https://github.com/orgs/EarthMC/projects/11/views/2?filterQuery=yhb7jsqi&pane=issue&itemId=84758219)  
   Display how many plots the town is allowed to overclaim
 
 ## Nation
@@ -103,6 +106,8 @@ ShoutPrice: 128
 wikiURL: "https://wiki.earthmc.net/"
 ### Settings for DiscordSRV Towny updates
 discordSRVChannelID: 969978366394511420
+### Settings for `/plot set vault`
+VaultCost: 0
 ## Permissions
 ### Perms for `/n shout`
 `towny.command.nation.shout`  
@@ -128,3 +133,6 @@ Allow players to bypass friendlyfire-allowed restriction, and to be able to togg
 ### Perms for `/t log`
 `towny.town.log.view`  
 Allow players to view recent joins & leaves in their own town
+### Perms for `/ta toggle shield`
+`towny.command.townyadmin.set.shield`
+Allow moderators to toggle a town's overclaimshield on/off

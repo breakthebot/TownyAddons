@@ -37,6 +37,10 @@ permissions:
   towny.town.log.view:
     description: Allow players to view recent joins & leaves in their own town
     default: op
+  ### /ta toggle shield
+  towny.command.townyadmin.set.shield:
+    description: Allow moderators to toggle a town's overclaimshield on/off
+    default: op
 
 
 dependencies:

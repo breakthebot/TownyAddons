@@ -86,13 +86,14 @@ public final class TownyAddons extends JavaPlugin {
         command(new AddonCommand(resType, "onlinefriends", new OnlineFriends()));
         command(new AddonCommand(resType, "outlawednations", new OutlawedNations()));
         command(new AddonCommand(townType, "resetperms", new ResetPerms()));
+        command(new AddonCommand(townType, "log", new TownLog()));
         command(new AddonCommand(nationType, "shout", new Shout()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.RESIDENT_SET, "wiki", new Wiki()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_SET, "discord", new TownDiscord()));
-        command(new AddonCommand(TownyCommandAddonAPI.CommandType.NATION_SET, "discord", new NationDiscord()));
 //        command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_SET, "plotlimit", new PlotLimit()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_TOGGLE, "friendlyfire", new FriendlyFire()));
-        command(new AddonCommand(townType, "log", new TownLog()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.NATION_SET, "discord", new NationDiscord()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWNYADMIN_TOGGLE, "shield", new TAOverclaimShield()));
 
         event(new OverclaimNotify(), this);
         event(new AnnounceNationRename(), this);
@@ -110,6 +111,7 @@ public final class TownyAddons extends JavaPlugin {
     public void command(AddonCommand command) {
         TownyCommandAddonAPI.addSubCommand(command);
     }
+
     public void event(Listener listener, Plugin plugin) {
         getServer().getPluginManager().registerEvents(listener, plugin);
     }
