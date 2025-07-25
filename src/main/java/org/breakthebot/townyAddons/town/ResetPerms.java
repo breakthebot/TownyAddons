@@ -19,6 +19,8 @@ package org.breakthebot.townyAddons.town;
 
 import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.TownyMessaging;
+import com.palmergames.bukkit.towny.confirmations.Confirmation;
+import com.palmergames.bukkit.towny.confirmations.ConfirmationHandler;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownBlock;
@@ -51,66 +53,76 @@ public class ResetPerms implements CommandExecutor {
             return false;
         }
         Resident target = null;
-        String confirm;
-        if (args.length == 0) {
-            TownyMessaging.sendMsg(player, "&bUsing /t resetperms will reset all of the following; town trusted, plot owners, plot trusted, plot perm overrides.");
-            TownyMessaging.sendMsg(player, "&bSpecifying a resident will only reset permissions for the resident.");
-            TownyMessaging.sendErrorMsg(player, "Usage: /t resetperms {resident} confirm");
-            return false;
-        } else if (args.length == 1) {
-            confirm = args[0];
-        } else if (args.length == 2){
-            target = TownyAPI.getInstance().getResident(args[0]);
+        Town town = res.getTownOrNull();
+        assert town != null;
+
+
+        if (args.length == 1){
+            target = API.getResident(args[0]);
             if (target == null) {
                 TownyMessaging.sendErrorMsg(player, "Invalid resident chosen.");
                 return false;
             }
-            confirm = args[1];
-        } else {
-            TownyMessaging.sendErrorMsg(player, "Usage: /t resetperms {resident} confirm");
+        } else if (args.length != 0){
+            TownyMessaging.sendErrorMsg(player, "Usage: /t resetperms {resident}");
             return false;
         }
-        if (!confirm.equalsIgnoreCase("confirm")) {
-            TownyMessaging.sendErrorMsg(player, "You must confirm this action! Use 'confirm' in your last argument.");
-            return false;
-        }
-
-
-        Town town = res.getTownOrNull();
-        assert town != null;
-        Collection<TownBlock> allTownBlocks = town.getTownBlocks();
-
-        if (target == null) {
-            Set<Resident> trustedList = new HashSet<>(town.getTrustedResidents());
-            for (Resident trustedRes : trustedList) {
-                town.removeTrustedResident(trustedRes);
-            }
-
-            for (TownBlock block : allTownBlocks) {
-                block.evictOwnerFromTownBlock(false);
-                block.setTrustedResidents(new HashSet<>());
-                block.getPermissionOverrides().clear();
-                block.setPermissions(town.getPermissions().toString());
-                block.save();
-            }
-            town.save();
-            TownyMessaging.sendMsg(player, "Successfully reset town permissions!");
-        }
-        else {
-            town.removeTrustedResident(target);
-            for (TownBlock block : allTownBlocks) {
-                TownBlockOwner owner = block.getTownBlockOwner();
-                if (owner instanceof Resident && block.getTownBlockOwner().getName().equalsIgnoreCase(target.getName())) {
-                    block.evictOwnerFromTownBlock(false);
-                }
-                if (block.hasTrustedResident(target)) { block.removeTrustedResident(target); }
-                block.getPermissionOverrides().remove(target);
-
-                block.save();
-            }
-            town.save();
-            TownyMessaging.sendMsg(player, "Successfully reset permission overrides & trust for player " + target.getName());
-        }
+        ConfirmationHandler.sendConfirmation(player, createConfirmation(player, town, target));
         return true;
+    }
+
+    private Confirmation createConfirmation(Player player, Town town, Resident target) {
+
+        return Confirmation
+                .runOnAccept(() -> {
+                    Collection<TownBlock> allTownBlocks = town.getTownBlocks();
+
+                    if (target == null) {
+                        Set<Resident> trustedList = new HashSet<>(town.getTrustedResidents());
+                        for (Resident trustedRes : trustedList) {
+                            town.removeTrustedResident(trustedRes);
+                        }
+
+                        for (TownBlock block : allTownBlocks) {
+                            block.evictOwnerFromTownBlock(false);
+                            block.setTrustedResidents(new HashSet<>());
+                            block.getPermissionOverrides().clear();
+                            block.setPermissions(town.getPermissions().toString());
+                            block.save();
+                        }
+                        try {
+                            town.save();
+                            TownyMessaging.sendMsg(player, "Successfully reset town permissions!");
+                        } catch (Exception e) {
+                            TownyMessaging.sendErrorMsg("An exception occurred while saving town data; \n" + e);
+                            TownyMessaging.sendErrorMsg(player, "Could not update town data.");
+                        }
+
+                    } else {
+                        town.removeTrustedResident(target);
+                        for (TownBlock block : allTownBlocks) {
+                            TownBlockOwner owner = block.getTownBlockOwner();
+                            if (owner instanceof Resident && owner.getName().equalsIgnoreCase(target.getName())) {
+                                block.evictOwnerFromTownBlock(false);
+                            }
+                            if (block.hasTrustedResident(target)) {
+                                block.removeTrustedResident(target);
+                            }
+                            block.getPermissionOverrides().remove(target);
+                            block.save();
+                        }
+
+                        try {
+                            town.save();
+                            TownyMessaging.sendMsg(player, "Successfully reset permission overrides & trust for player " + target.getName());
+                        } catch (Exception e) {
+                            TownyMessaging.sendErrorMsg("An exception occurred while saving town data; \n" + e);
+                            TownyMessaging.sendErrorMsg(player, "Could not update town data.");
+                        }
+                    }
+                })
+                .setTitle("Using /t resetperms will reset all of the following: town trusted, plot owners, plot trusted, plot perm overrides.\n" +
+                        "Specifying a resident will only reset permissions for the resident.")
+                .build();
     }
 }
