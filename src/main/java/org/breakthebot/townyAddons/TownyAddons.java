@@ -94,6 +94,7 @@ public final class TownyAddons extends JavaPlugin {
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_TOGGLE, "friendlyfire", new FriendlyFire()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.NATION_SET, "discord", new NationDiscord()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWNYADMIN_TOGGLE, "shield", new TAOverclaimShield()));
+        command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_LIST_BY, "forsale", new ListByForsale()));
 
         event(new OverclaimNotify(), this);
         event(new AnnounceNationRename(), this);
