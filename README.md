@@ -44,7 +44,9 @@ Ideas sourced from the EMC Roadmap
 - `/t toggle friendlyfire (on|off)`  [zwipd7cj](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=78804596)  
   Toggle a town's friendlyfire allowed status.  
   This stops `/plot toggle pvp` (issued by a resident of the town) in all chunks in the town. Only players with the bypass permission node will bypass.  
-- `/ta toggle shield <town> (on|off)`
+- `/t list by forsale`[di95sjmh](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=57780222)  
+  List towns from high to low forsale price
+- `/ta toggle shield <town> (on|off)`  
   Allow server mods/admins to toggle a town's overclaimshield  
   Requires [overclaimshield](https://github.com/jwkerr/OverclaimShield/tree/master/src/main/java/net/earthmc/overclaimshield)
 
