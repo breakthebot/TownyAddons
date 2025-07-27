@@ -20,19 +20,26 @@ package org.breakthebot.townyAddons.town;
 import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.towny.object.Town;
+import com.palmergames.bukkit.towny.object.TownyObject;
 import com.palmergames.bukkit.towny.object.metadata.BooleanDataField;
 import com.palmergames.bukkit.towny.object.metadata.LongDataField;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
-public class TAOverclaimShield implements CommandExecutor {
+public class TAOverclaimShield implements CommandExecutor, TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        if (!sender.hasPermission("towny.command.townyadmin.set.shield")) {
+        if (!sender.hasPermission("towny.command.townyadmin.toggle.shield")) {
             TownyMessaging.sendErrorMsg(sender, "You do not have permission to perform this command.");
             return false;
         }
@@ -70,10 +77,36 @@ public class TAOverclaimShield implements CommandExecutor {
             setOverclaimShield(town, opposite);
             TownyMessaging.sendMsg(sender, "Overclaim shield status toggled to " + opposite);
         } else {
-            TownyMessaging.sendErrorMsg(sender, "Usage: /ta toggle <town> <on|off>");
+            TownyMessaging.sendErrorMsg(sender, "Usage: /ta toggle shield <town> <on|off>");
             return false;
         }
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(
+            @NotNull CommandSender sender,
+            @NotNull Command command,
+            @NotNull String label,
+            @NotNull String @NotNull [] args
+    ) {
+        if (!(sender instanceof Player player)) return List.of();
+
+        if (args.length == 1) {
+            return TownyAPI.getInstance().getTowns().stream()
+                    .map(TownyObject::getName)
+                    .filter(n -> n.toLowerCase().startsWith(args[0].toLowerCase()))
+                    .sorted()
+                    .toList();
+        }
+
+        if (args.length == 2) {
+            return Stream.of("on", "off")
+                    .filter(s -> s.startsWith(args[1].toLowerCase()))
+                    .toList();
+        }
+
+        return List.of();
     }
 
     /*
