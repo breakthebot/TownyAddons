@@ -38,13 +38,13 @@ Ideas sourced from the EMC Roadmap
   *Optionally* specify a resident to only affect that player.  
   Must add "confirm" to the end regardless  
   **Usage: /t resetperms {resident} confirm**
-- `/t log`  [6yy4qe9h](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=60482575)
+- `/t log` [6yy4qe9h](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=60482575)
   & [mj5kyw77](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=84759143)  
   List recent resident join & leave activity
 - `/t toggle friendlyfire (on|off)`  [zwipd7cj](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=78804596)  
   Toggle a town's friendlyfire allowed status.  
   This stops `/plot toggle pvp` (issued by a resident of the town) in all chunks in the town. Only players with the bypass permission node will bypass.  
-- `/t list by forsale`[di95sjmh](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=57780222)  
+- `/t list by forsale` [di95sjmh](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=57780222)  
   List towns from high to low forsale price
 - `/ta toggle shield <town> (on|off)`  
   Allow server mods/admins to toggle a town's overclaimshield  
@@ -59,7 +59,7 @@ Ideas sourced from the EMC Roadmap
   Display if the town is paying for outsiders to teleport
 - Discord  
   View a town's linked discord
-- Overclaims remaining [yhb7jsqi](https://github.com/orgs/EarthMC/projects/11/views/2?filterQuery=yhb7jsqi&pane=issue&itemId=84758219)  
+- Overclaims remaining [yhb7jsqi](https://github.com/orgs/EarthMC/projects/11/views/2?pane=issue&itemId=84758219)  
   Display how many plots the town is allowed to overclaim
 
 ## Nation
