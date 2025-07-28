@@ -22,6 +22,7 @@ import com.palmergames.adventure.text.Component;
 import com.palmergames.adventure.text.event.ClickEvent;
 import com.palmergames.adventure.text.event.HoverEvent;
 import com.palmergames.adventure.text.format.NamedTextColor;
+import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.towny.event.statusscreen.NationStatusScreenEvent;
 import com.palmergames.bukkit.towny.object.Nation;
 import org.bukkit.event.EventHandler;
@@ -33,7 +34,7 @@ public class NationStatusScreenListener implements Listener {
     @EventHandler
     public void onNationStatusScreen(NationStatusScreenEvent event) {
         Nation nation = event.getNation();
-        int nationBonus = getNationBonus(nation);
+        int nationBonus = TownySettings.getNationBonusBlocks(nation);
         int residents = nation.getNumResidents();
         int size = nation.getNumTownblocks();
 
@@ -67,26 +68,5 @@ public class NationStatusScreenListener implements Listener {
 
             event.getStatusScreen().addComponentOf("discord", component);
         }
-    }
-
-    private static int getNationBonus(Nation nation) {
-        int numRes = nation.getNumResidents();
-        int nationBonus;
-        if (numRes < 20) {
-            nationBonus = 0;
-        } else if (numRes < 40) {
-            nationBonus = 10;
-        } else if (numRes < 60) {
-            nationBonus = 30;
-        } else if (numRes < 80) {
-            nationBonus = 50;
-        } else if (numRes < 120) {
-            nationBonus = 60;
-        } else if (numRes < 200) {
-            nationBonus = 80;
-        } else {
-            nationBonus = 100;
-        }
-        return nationBonus;
     }
 }
