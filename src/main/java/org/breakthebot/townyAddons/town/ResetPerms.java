@@ -67,14 +67,18 @@ public class ResetPerms implements CommandExecutor {
             TownyMessaging.sendErrorMsg(player, "Usage: /t resetperms {resident}");
             return false;
         }
-        ConfirmationHandler.sendConfirmation(player, createConfirmation(player, town, target));
+        ConfirmationHandler.sendConfirmation(player, createConfirmation(res, player, town, target));
         return true;
     }
 
-    private Confirmation createConfirmation(Player player, Town town, Resident target) {
+    private Confirmation createConfirmation(Resident res, Player player, Town town, Resident target) {
 
         return Confirmation
                 .runOnAccept(() -> {
+                    if (!res.isMayor()) {
+                        TownyMessaging.sendErrorMsg(res, "You are no longer the mayor of this town!");
+                        return;
+                    }
                     Collection<TownBlock> allTownBlocks = town.getTownBlocks();
 
                     if (target == null) {
