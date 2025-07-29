@@ -24,7 +24,7 @@ import org.breakthebot.townyAddons.nation.NationDiscord;
 import org.breakthebot.townyAddons.nation.NationStatusScreenListener;
 import org.breakthebot.townyAddons.nation.Shout;
 import org.breakthebot.townyAddons.plot.OnClaimListener;
-import org.breakthebot.townyAddons.plot.Vault;
+import org.breakthebot.townyAddons.plot.VaultPermOverride;
 import org.breakthebot.townyAddons.resident.*;
 import com.palmergames.bukkit.towny.object.AddonCommand;
 import org.breakthebot.townyAddons.town.*;
@@ -35,14 +35,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
-import static org.breakthebot.townyAddons.plot.Vault.registerVaultPlot;
+import static org.breakthebot.townyAddons.plot.VaultPlotRegister.registerVaultPlot;
 
 
 public final class TownyAddons extends JavaPlugin {
     private static TownyAddons instance;
     private config configuration;
-
-
 
     @Override
     public void onEnable() {
@@ -106,7 +104,7 @@ public final class TownyAddons extends JavaPlugin {
         event(new FriendlyFireCheck(), this);
         event(new TownyMessageBroadcast(), this);
         event(new TownLog(), this);
-        event(new Vault(), this);
+        event(new VaultPermOverride(), this);
     }
 
     public void command(AddonCommand command) {
