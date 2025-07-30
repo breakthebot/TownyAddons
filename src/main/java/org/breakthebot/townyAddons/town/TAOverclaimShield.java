@@ -32,14 +32,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class TAOverclaimShield implements CommandExecutor, TabExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        if (!sender.hasPermission("towny.command.townyadmin.toggle.shield")) {
+        if (!sender.hasPermission("towny.command.townyadmin.shield")) {
             TownyMessaging.sendErrorMsg(sender, "You do not have permission to perform this command.");
             return false;
         }

@@ -136,5 +136,5 @@ Allow players to bypass friendlyfire-allowed restriction, and to be able to togg
 `towny.town.log.view`  
 Allow players to view recent joins & leaves in their own town
 ### Perms for `/ta toggle shield`
-`towny.command.townyadmin.set.shield`
+`towny.command.townyadmin.shield`
 Allow moderators to toggle a town's overclaimshield on/off
