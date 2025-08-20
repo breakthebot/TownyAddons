@@ -21,20 +21,22 @@ import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
 import com.palmergames.bukkit.towny.invites.Invite;
 import com.palmergames.bukkit.towny.object.Resident;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import java.util.List;
+
+import java.util.ArrayList;
 
 public class ClearInvites implements Listener {
 
     @EventHandler
     public void onTownJoin(TownAddResidentEvent event) {
         Resident res = event.getResident();
-        List<Invite> inviteList = res.getReceivedInvites();
-        if (inviteList.isEmpty()) { return; }
-        for (Invite inv : inviteList) {
+        Player player = res.getPlayer();
+        if (res.getReceivedInvites().isEmpty()) return;
+        for (Invite inv : new ArrayList<>(res.getReceivedInvites())) {
             res.deleteReceivedInvite(inv);
         }
-        TownyMessaging.sendMsg(res.getPlayer(), "All your pending invites have been removed.");
+        TownyMessaging.sendMsg(player, "All your pending invites have been removed.");
     }
 }

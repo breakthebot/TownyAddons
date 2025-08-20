@@ -93,24 +93,24 @@ public final class TownyAddons extends JavaPlugin {
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWNYADMIN, "shield", new TAOverclaimShield()));
         command(new AddonCommand(TownyCommandAddonAPI.CommandType.TOWN_LIST_BY, "forsale", new ListByForsale()));
 
-        event(new OverclaimNotify(), this);
-        event(new AnnounceNationRename(), this);
-        event(new ClearInvites(), this);
-        event(new NationStatusScreenListener(), this);
-        event(new TownStatusScreenListener(), this);
-        event(new ResidentStatusScreenListener(), this);
-        event(new OnClaimListener(), this);
-        event(new FriendlyFireCheck(), this);
-        event(new TownyMessageBroadcast(), this);
-        event(new TownLog(), this);
-        event(new VaultPermOverride(), this);
+        event(new OverclaimNotify());
+        event(new AnnounceNationRename());
+        event(new ClearInvites());
+        event(new NationStatusScreenListener());
+        event(new TownStatusScreenListener());
+        event(new ResidentStatusScreenListener());
+        event(new OnClaimListener());
+        event(new FriendlyFireCheck());
+        event(new TownyMessageBroadcast());
+        event(new TownLog());
+        event(new VaultPermOverride());
     }
 
     public void command(AddonCommand command) {
         TownyCommandAddonAPI.addSubCommand(command);
     }
 
-    public void event(Listener listener, Plugin plugin) {
-        getServer().getPluginManager().registerEvents(listener, plugin);
+    public void event(Listener listener) {
+        getServer().getPluginManager().registerEvents(listener, this);
     }
 }
