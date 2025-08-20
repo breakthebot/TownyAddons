@@ -17,10 +17,13 @@
 
 package org.breakthebot.townyAddons.plot;
 
+import com.palmergames.bukkit.towny.TownyMessaging;
+import com.palmergames.bukkit.towny.event.PlotPreChangeTypeEvent;
 import com.palmergames.bukkit.towny.event.TownBlockTypeRegisterEvent;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.*;
 import org.breakthebot.townyAddons.TownyAddons;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
@@ -58,5 +61,21 @@ public class VaultPlotRegister implements Listener {
     @EventHandler
     public void onTownyLoadTownBlockTypes(TownBlockTypeRegisterEvent event) {
         registerVaultPlot();
+    }
+
+    @EventHandler
+    public void unsetVaultPlot(PlotPreChangeTypeEvent event) {
+        if (!event.getOldType().getName().equalsIgnoreCase("vault")) return;
+        Resident cmduser = event.getResident();
+        Player player = cmduser.getPlayer();
+        assert player != null; // Any resident changing a plot is an online player
+        Town town = event.getTownBlock().getTownOrNull();
+        if (town == null) return;
+        Resident mayor = town.getMayor();
+
+        if (!cmduser.equals(mayor) && !player.hasPermission("towny.vault.change")) {
+            event.setCancelled(true);
+            event.setCancelMessage("You do not have permission to change Vault plots.");
+        }
     }
 }
