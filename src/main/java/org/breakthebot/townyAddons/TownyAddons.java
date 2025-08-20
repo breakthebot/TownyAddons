@@ -30,7 +30,6 @@ import org.breakthebot.townyAddons.resident.*;
 import com.palmergames.bukkit.towny.object.AddonCommand;
 import org.breakthebot.townyAddons.town.*;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 
