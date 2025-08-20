@@ -25,6 +25,7 @@ import org.breakthebot.townyAddons.nation.NationStatusScreenListener;
 import org.breakthebot.townyAddons.nation.Shout;
 import org.breakthebot.townyAddons.plot.OnClaimListener;
 import org.breakthebot.townyAddons.plot.VaultPermOverride;
+import org.breakthebot.townyAddons.plot.VaultPlotRegister;
 import org.breakthebot.townyAddons.resident.*;
 import com.palmergames.bukkit.towny.object.AddonCommand;
 import org.breakthebot.townyAddons.town.*;
@@ -34,8 +35,6 @@ import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
-
-import static org.breakthebot.townyAddons.plot.VaultPlotRegister.registerVaultPlot;
 
 
 public final class TownyAddons extends JavaPlugin {
@@ -54,7 +53,7 @@ public final class TownyAddons extends JavaPlugin {
     @Override
     public void onLoad() {
         instance = this;
-        registerVaultPlot();
+        VaultPlotRegister.registerVaultPlot();
     }
 
     @Override
