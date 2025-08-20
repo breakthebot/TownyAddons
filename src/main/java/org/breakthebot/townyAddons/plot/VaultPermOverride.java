@@ -33,20 +33,12 @@ public class VaultPermOverride implements Listener {
         checkAllowed(event);
     }
     @EventHandler
-    public void onBuild(TownyDestroyEvent event) {
-        checkAllowed(event);
-
-    }
+    public void onDestroy(TownyDestroyEvent event) { checkAllowed(event); }
     @EventHandler
-    public void onBuild(TownySwitchEvent event) {
-        checkAllowed(event);
-
-    }
+    public void onSwitch(TownySwitchEvent event) { checkAllowed(event); }
     @EventHandler
-    public void onBuild(TownyItemuseEvent event) {
-        checkAllowed(event);
+    public void onItemuse(TownyItemuseEvent event) { checkAllowed(event); }
 
-    }
     public void checkAllowed(TownyActionEvent event) {
         Player player = event.getPlayer();
 
@@ -57,7 +49,7 @@ public class VaultPermOverride implements Listener {
         Town town = block.getTownOrNull();
         if (town == null) { return; }
         if (!"vault".equalsIgnoreCase(block.getTypeName())) { return; }
-        boolean exempt = town.isMayor(res) || player.hasPermission("towny.admin");
+        boolean exempt = town.isMayor(res) || player.hasPermission("towny.admin") || player.hasPermission("towny.vault.perm.exempt");
 
         if (!exempt) {
             event.setCancelled(true);
