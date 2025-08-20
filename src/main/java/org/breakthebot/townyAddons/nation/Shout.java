@@ -51,15 +51,15 @@ public class Shout implements CommandExecutor {
         config settings = TownyAddons.getInstance().getConfiguration();
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
-        Nation nat = res.getNationOrNull();
-        assert nat != null;
-
+        assert res != null; // Any player issuing a command is a registered Towny resident
 
         if (!res.hasNation()){
             TownyMessaging.sendErrorMsg(player, "You must be in a nation.");
             return false;
         }
+
+        Nation nat = res.getNationOrNull();
+        assert nat != null; // if res.hasNation() is false it returns before reaching here
 
         if (args.length < 1){
             TownyMessaging.sendErrorMsg(player, "Usage: /n shout {message}");

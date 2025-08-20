@@ -59,18 +59,15 @@ public class OverclaimNotify implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Resident res = API.getResident(event.getPlayer());
-        assert res != null;
-        if (!res.isMayor()) {
-            return;
-        }
+        if (res == null) return;
+        if (!res.isMayor()) return;
         Town town = res.getTownOrNull();
-        assert town != null;
+        assert town != null; // if res.isMayor() is false it returns before reaching here
         UUID uuid = town.getUUID();
-        if (!townMessageQueue.containsKey(uuid)) {
-            return;
-        }
+        if (!townMessageQueue.containsKey(uuid)) return;
 
         String message = townMessageQueue.remove(uuid);
+        if (message == null) return;
         TownyMessaging.sendPrefixedTownMessage(town, message);
     }
 }

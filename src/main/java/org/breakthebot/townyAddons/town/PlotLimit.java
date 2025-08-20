@@ -38,20 +38,21 @@ public class PlotLimit implements CommandExecutor {
             return false;
         }
 
-        TownyAPI API = TownyAPI.getInstance();
-        Resident res = API.getResident(player);
-        assert res != null;
-        if (!res.hasTown()) {
-            TownyMessaging.sendErrorMsg(player, "You must be in a town.");
-            return false;
-        }
         if (!player.hasPermission("towny.command.town.set.plotlimit")) {
             TownyMessaging.sendErrorMsg(player, "You do not have permission to perform this command.");
             return false;
         }
 
+        TownyAPI API = TownyAPI.getInstance();
+        Resident res = API.getResident(player);
+        assert res != null; // Any player issuing a command is a registered Towny resident
+        if (!res.hasTown()) {
+            TownyMessaging.sendErrorMsg(player, "You must be in a town.");
+            return false;
+        }
+
         Town town = res.getTownOrNull();
-        assert town != null;
+        assert town != null; // if res.hasTown() is false it returns before reaching here
 
         if (args.length == 0) {
             removePlotLimit(town);
