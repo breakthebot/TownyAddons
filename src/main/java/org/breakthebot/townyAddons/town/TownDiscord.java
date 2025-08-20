@@ -47,13 +47,13 @@ public class TownDiscord implements CommandExecutor {
 
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         if (!res.hasTown()) {
             TownyMessaging.sendErrorMsg(player, "You must be part of a town.");
             return false;
         }
         Town town = res.getTownOrNull();
-        assert town != null;
+        assert town != null; // if res.hasTown() is false it returns before reaching here
         config settings = TownyAddons.getInstance().getConfiguration();
 
         if (args.length == 0) {

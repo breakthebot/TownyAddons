@@ -46,7 +46,7 @@ public class Wiki implements CommandExecutor {
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
         config settings = TownyAddons.getInstance().getConfiguration();
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
 
         if (args.length == 0) {
             if (!residentHasWiki(res)) {

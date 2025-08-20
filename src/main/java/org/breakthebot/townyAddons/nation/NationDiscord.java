@@ -49,13 +49,13 @@ public class NationDiscord implements CommandExecutor {
 
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         if (!res.hasNation()) {
             TownyMessaging.sendErrorMsg(player, "You must be part of a nation.");
             return false;
         }
         Nation nation = res.getNationOrNull();
-        assert nation != null;
+        assert nation != null; // if res.hasNation() is false it returns before reaching here
         config settings = TownyAddons.getInstance().getConfiguration();
 
         if (args.length == 0) {

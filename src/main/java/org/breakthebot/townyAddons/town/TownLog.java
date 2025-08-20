@@ -53,13 +53,13 @@ public class TownLog implements CommandExecutor, Listener {
 
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         if (!res.hasTown()) {
             TownyMessaging.sendErrorMsg(player, "You must be in a town.");
             return false;
         }
         Town town = res.getTownOrNull();
-        assert town != null;
+        assert town != null; // if res.hasTown() is false it returns before reaching here
         if (!recentResidentActivity.containsKey(town.getUUID())) {
             TownyMessaging.sendErrorMsg(player, "No recent joins or leaves found for your town.");
             return false;

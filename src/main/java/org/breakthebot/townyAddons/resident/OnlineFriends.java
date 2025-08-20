@@ -39,7 +39,7 @@ public class OnlineFriends implements CommandExecutor {
         }
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         List<Resident> friends = res.getFriends();
         ArrayList<Resident> onlineFriends = new ArrayList<>();
         if (friends.isEmpty()) {

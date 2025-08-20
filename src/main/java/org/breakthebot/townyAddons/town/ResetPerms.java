@@ -47,14 +47,14 @@ public class ResetPerms implements CommandExecutor {
 
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         if (!res.isMayor()) {
             TownyMessaging.sendErrorMsg(player, "You must be the mayor of a town.");
             return false;
         }
         Resident target = null;
         Town town = res.getTownOrNull();
-        assert town != null;
+        assert town != null; // if res.isMayor() is false it returns before reaching here
 
 
         if (args.length == 1){

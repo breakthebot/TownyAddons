@@ -34,7 +34,7 @@ public class OnClaimListener implements Listener {
         TownBlock block = event.getTownBlock();
         Town town = block.getTownOrNull();
         Resident res = event.getNewResident();
-        assert res != null;
+        assert res != null;  // Any player claiming a plot is a registered Towny resident
         if (town == null) { return; }
         if (!PlotLimit.hasPlotLimit(town)) { return; }
         int limit = PlotLimit.getPlotLimit(town);

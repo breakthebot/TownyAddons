@@ -44,7 +44,7 @@ public class OutlawedNations implements CommandExecutor {
         }
         TownyAPI API = TownyAPI.getInstance();
         Resident res = API.getResident(player);
-        assert res != null;
+        assert res != null; // Any player issuing a command is a registered Towny resident
         List<Nation> outlawingNations = getNationsThatOutlawPlayer(player);
         if (outlawingNations.isEmpty()) {
             player.sendMessage(NamedTextColor.DARK_GREEN + "Outlawed in " + NamedTextColor.GREEN + "[" + 0 + "]:");
