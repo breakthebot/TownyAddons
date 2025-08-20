@@ -42,6 +42,13 @@ permissions:
     description: Allow moderators to toggle a town's overclaimshield on/off
     default: op
 
+  towny.vault.change:
+    description: Allow players to change vault plot to any other type; intended for trusted mayor-assistants
+    default: op
+  towny.vault.perm.exempt:
+    description: Exemption from Vault plot permission denial; intended for server staff
+    default: op
+
 
 dependencies:
   - name: Towny
