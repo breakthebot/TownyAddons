@@ -138,3 +138,10 @@ Allow players to view recent joins & leaves in their own town
 ### Perms for `/ta toggle shield`
 `towny.command.townyadmin.shield`
 Allow moderators to toggle a town's overclaimshield on/off
+
+### Override to allow a user to access Vault plots
+`towny.vault.perm.exempt`
+Intended for server staff to access stuff if they use TownyAdmin town trust
+### Override to allow a user to change Vault plot types
+`towny.vault.change`
+Intended for mayor assistants to be able to change plot types from Vault to any other
